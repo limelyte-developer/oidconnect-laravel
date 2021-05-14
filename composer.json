@@ -1,5 +1,5 @@
 {
-    "name": "furdarius/oidconnect-laravel",
+    "name": "limelyte-developer/oidconnect-laravel",
     "description": "Open ID Connect client library for Laravel Framework",
     "license": "MIT",
     "keywords": ["openidconnect", "oauth", "laravel"],
