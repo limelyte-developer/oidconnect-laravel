@@ -83,7 +83,7 @@ class ServiceProvider extends ServiceProviderIlluminate
         });
 
         $this->app->singleton(Parser::class, function ($app) {
-            return new Token\Parser($app[Decoder::class]);
+            return new Parser($app[\Lcobucci\JWT\Parsing\Decoder::class]);
         });
 
         $this->app->singleton(Validator::class, function ($app) {
