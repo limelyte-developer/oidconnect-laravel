@@ -9,6 +9,7 @@ use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
+use Lcobucci\JWT\Claim;
 use Lcobucci\JWT\Parser;
 
 class OIDConnectSocialiteProvider extends AbstractProvider implements ProviderInterface
@@ -126,13 +127,14 @@ class OIDConnectSocialiteProvider extends AbstractProvider implements ProviderIn
          */
         $plainToken = $this->parser->parse($token);
 
-        $claims = $plainToken->claims();
+        /** @var Claim[] $claims */
+        $claims = $plainToken->getClaims();
 
         return [
-            'sub' => $claims->get('sub'),
-            'iss' => $claims->get('iss'),
-            'name' => $claims->get('name'),
-            'email' => $claims->get('email'),
+            'sub' => $claims['sub']->getValue(),
+            'iss' => $claims['iss']->getValue(),
+            'name' => $claims['name']->getValue(),
+            'email' => $claims['email']->getValue(),
         ];
     }
 
